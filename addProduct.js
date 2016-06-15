@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var fs = require("fs");
-var maxIdUtils = require('./max-id-utils.js');
-
-maxIdUtils.initMaxIdFile();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));

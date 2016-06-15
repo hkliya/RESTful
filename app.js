@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 var products = require('./products.js');
+var maxIdUtils = require('./max-id-utils.js');
+
+maxIdUtils.initMaxIdFile();
 
 app.use('/', require('./getOneProduct.js'));
 app.use('/', require('./getAllProducts.js'));
