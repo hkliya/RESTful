@@ -46,11 +46,10 @@ function isExist(product) {
 }
 
 function isRight(product) {
-
-    return (typeof(product.barcode) != 'string') ||
-        (typeof(product.name) != "string") ||
-        (typeof(product.unit) != "string") ||
-        (typeof(product.price) != "number");
+    return typeof product.barcode == 'string' 
+        && typeof product.name == "string" 
+        && typeof product.unit == "string" 
+        && typeof product.price == "number";
 }
 
 function addProduct(productsData, product, res) {
