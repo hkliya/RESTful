@@ -7,7 +7,7 @@ const components = [
     'getAllProducts',
     'addProduct',
     'deleteProduct',
-    'updataProducts'
+    'updateProducts'
 ];
 
 maxIdUtils.initMaxIdFile();
