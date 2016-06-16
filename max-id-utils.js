@@ -17,19 +17,9 @@ function initFile() {
 
             return;
         }
-        writeId();
-    });
-}
-
-function writeId() {
-
-    var data = {"maxId": 0};
-
-    fs.writeFile(maxIdFile, JSON.stringify(data), 'utf-8', function (err) {
-        if (err) {
-            console.error(err.stack);
-
-        }
+        writeMaxId(0, function() {
+            console.log("Max id file initialized.")
+        });
     });
 }
 
