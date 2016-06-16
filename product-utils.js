@@ -1,11 +1,24 @@
 var fs = require('fs');
+var maxIdUtils = require('./max-id-utils.js');
 const productFile = './products.json';
+
 
 function addProduct(product, callback) {
     readProducts(function(successfully, products) {
         if (successfully) {
             products.push(product);
             writeProducts(products, callback);
+        } else {
+            callback(false);
+        }
+    });
+}
+
+function saveProduct(product, callback) {
+    maxIdUtils.updateMaxId(function (successfully, id) {
+        if (successfully) {
+            product.id = id;
+            addProduct(product, callback);
         } else {
             callback(false);
         }
@@ -60,7 +73,7 @@ function findProductById(id, callback) {
     });
 }
 
-module.exports.addProduct = addProduct;
+module.exports.saveProduct = saveProduct;
 module.exports.deleteProduct = deleteProduct;
 module.exports.readProducts = readProducts;
 module.exports.findProductById = findProductById;
