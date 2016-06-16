@@ -1,4 +1,5 @@
 var fs = require('fs');
+const productFile = './products.json';
 
 function addProduct(product, callback) {
     readProducts(function(successfully, products) {
@@ -12,7 +13,7 @@ function addProduct(product, callback) {
 }
 
 function readProducts(callback) {
-    fs.readFile('./products.json', 'utf-8', function (err, fileContent) {
+    fs.readFile(productFile, 'utf-8', function (err, fileContent) {
         if (err) {
             callback(false);
         } else {
@@ -22,7 +23,7 @@ function readProducts(callback) {
 }
 
 function writeProducts(products, callback) {
-    fs.writeFile('./products.json', JSON.stringify(products), function (err) {
+    fs.writeFile(productFile, JSON.stringify(products), function (err) {
         if (err) {
             callback(false);
         } else {
