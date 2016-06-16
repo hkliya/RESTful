@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router(); //构造函数，生成路由实例
+var router = express.Router();
 var productUtils = require('./product-utils.js');
 
 router.get('/', function (req, res) {

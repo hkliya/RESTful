@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var productUtils = require('./product-utils.js');
-var fs = require("fs");
 
 router.delete('/:id', function (req, res) {
     productUtils.deleteProduct(parseInt(req.params.id), function(successfully) {

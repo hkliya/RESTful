@@ -73,7 +73,9 @@ function findProductById(id, callback) {
     });
 }
 
-module.exports.saveProduct = saveProduct;
-module.exports.deleteProduct = deleteProduct;
-module.exports.readProducts = readProducts;
-module.exports.findProductById = findProductById;
+module.exports = {
+    saveProduct: saveProduct,
+    deleteProduct: deleteProduct,
+    readProducts: readProducts,
+    findProductById: findProductById
+}

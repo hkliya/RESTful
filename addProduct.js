@@ -9,7 +9,6 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/', function (req, res) {
     if (isValid(req.body)) {
-        console.log(req.body);
         productUtils.saveProduct(req.body, function(successful, product) {
             if (successful) {
                 res.status(201).json(product);
