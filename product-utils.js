@@ -36,7 +36,7 @@ function deleteProduct(id, callback) {
     readProducts(function(successfully, products) {
         var i = 0;
         for (i; i < products.length; i++) {
-            if (products[i].id === parseInt(id)) {
+            if (products[i].id === id) {
                 products.splice(i, 1);
                 writeProducts(products, callback);
                 return;
