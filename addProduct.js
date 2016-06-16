@@ -17,25 +17,20 @@ router.post('/', function (req, res) {
 
         var data = JSON.parse(fileContent);
 
-        getInputProduct(data, req, res);
+        if (isValid(req.body)) {
+            addProduct(data, req.body, res);
+        }
+        else {
+            res.sendStatus(400);
+        }
     });
 });
 
-function getInputProduct(data, req, res) {
-
-    var product = req.body;
-
-    if (isExist(product) && isRight(product)) {
-
-        addProduct(data, product, res);
-    }
-    else {
-
-        res.sendStatus(400);
-    }
+function isValid(product) {
+    return hasProperties(product) && hasRightType(product);
 }
 
-function isExist(product) {
+function hasProperties(product) {
 
     return product.hasOwnProperty("barcode") &&
         product.hasOwnProperty("name") &&
@@ -45,7 +40,7 @@ function isExist(product) {
 
 }
 
-function isRight(product) {
+function hasRightType(product) {
     return typeof product.barcode == 'string' 
         && typeof product.name == "string" 
         && typeof product.unit == "string" 
