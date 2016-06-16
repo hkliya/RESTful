@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var maxIdUtils = require('./max-id-utils.js');
 var fs = require("fs");
 
 router.use(bodyParser.json());
@@ -43,46 +44,13 @@ function hasRightType(product) {
 }
 
 function saveProduct(product, callback) {
-    updateMaxId(function (successfully, id) {
+    maxIdUtils.updateMaxId(function (successfully, id) {
         if (successfully) {
             product.id = id;
             updateProducts(product, callback);
         } else {
             callback(false);
         }
-    });
-}
-
-function updateMaxId(callback) {
-    readMaxId(function (successfully, id) {
-        if (successfully) {
-            writeMaxId(id + 1, callback);
-        } else {
-            callback(false);
-        }
-    });
-}
-
-function readMaxId(callback) {
-    fs.readFile('./max-id.json', 'utf-8', function (err, fileContent) {
-        if (err) {
-            callback(false);
-            return;
-        }
-
-        var data = JSON.parse(fileContent);
-        callback(true, data.maxId);
-    })
-}
-
-function writeMaxId(id, callback) {
-    fs.writeFile('./max-id.json', JSON.stringify({"maxId": id}), function (err) {
-        if (err) {
-            callback(false);
-            return;
-        }
-
-        callback(true, id);
     });
 }
 
