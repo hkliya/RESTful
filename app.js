@@ -13,7 +13,7 @@ const components = [
 maxIdUtils.initMaxIdFile();
 
 components.forEach(function (component) {
-    app.use('/', require('./' + component + '.js'));
+    app.use('/products', require('./' + component + '.js'));
 });
 
 app.listen(8010, function () {

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs");
 
-router.delete('/products/:id', function (req, res) {
+router.delete('/:id', function (req, res) {
 
     fs.readFile('./products.json', 'utf-8', function (err, data) {
         if (err) {

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router(); //构造函数，生成路由实例
 var fs = require('fs');
 
-router.get('/products', function (req, res) {
+router.get('/', function (req, res) {
 
     fs.readFile('./products.json', 'utf-8', function (err, data) {
         if (err) {
