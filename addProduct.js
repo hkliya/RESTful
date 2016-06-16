@@ -54,7 +54,7 @@ function isRight(product) {
 
 function addProduct(productsData, product, res) {
 
-    fs.readFile('./max_id.json', 'utf-8', function (err, data) {
+    fs.readFile('./max-id.json', 'utf-8', function (err, data) {
         if (err) {
             res.sendStatus(500);
 
@@ -83,7 +83,7 @@ function addProduct(productsData, product, res) {
 
 function writeMaxId(data, res) {
 
-    fs.writeFile('./max_id.json', JSON.stringify(data), function (err) {
+    fs.writeFile('./max-id.json', JSON.stringify(data), function (err) {
         if (err) {
 
             res.sendStatus(500);
