@@ -46,6 +46,21 @@ function deleteProduct(id, callback) {
     });
 }
 
+function findProductById(id, callback) {
+    readProducts(function (successfully, products) {
+        if (successfully) {
+            var product = products.find(function (product) {
+                return product.id === id;
+            });
+            
+            callback(product);
+        } else {
+            callback(false);
+        }
+    });
+}
+
 module.exports.addProduct = addProduct;
 module.exports.deleteProduct = deleteProduct;
 module.exports.readProducts = readProducts;
+module.exports.findProductById = findProductById;
