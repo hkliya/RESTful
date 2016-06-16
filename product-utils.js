@@ -48,3 +48,4 @@ function deleteProduct(id, callback) {
 
 module.exports.addProduct = addProduct;
 module.exports.deleteProduct = deleteProduct;
+module.exports.readProducts = readProducts;
