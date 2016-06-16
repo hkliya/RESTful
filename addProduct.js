@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/', function (req, res) {
-    if (isValid(req.body)) {
+    if (productUtils.isValid(req.body)) {
         productUtils.saveProduct(req.body, function(successful, product) {
             if (successful) {
                 res.status(201).json(product);
@@ -20,26 +20,5 @@ router.post('/', function (req, res) {
         res.sendStatus(400);
     }
 });
-
-function isValid(product) {
-    return hasProperties(product) && hasRightType(product);
-}
-
-function hasProperties(product) {
-
-    return product.hasOwnProperty("barcode") &&
-        product.hasOwnProperty("name") &&
-        product.hasOwnProperty("unit") &&
-        product.hasOwnProperty("price");
-
-
-}
-
-function hasRightType(product) {
-    return typeof product.barcode == 'string' 
-        && typeof product.name == "string" 
-        && typeof product.unit == "string" 
-        && typeof product.price == "number";
-}
 
 module.exports = router;

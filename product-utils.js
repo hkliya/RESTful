@@ -73,9 +73,40 @@ function findProductById(id, callback) {
     });
 }
 
+function updateProduct(product, callback) {
+    deleteProduct(product.id, function(successful) {
+        if (successful) {
+            addProduct(product, callback);
+        } else {
+            callback(false);
+        }
+    });
+}
+
+function isValid(product) {
+    return hasProperties(product) && hasRightType(product);
+}
+
+function hasProperties(product) {
+
+    return product.hasOwnProperty("barcode") &&
+        product.hasOwnProperty("name") &&
+        product.hasOwnProperty("unit") &&
+        product.hasOwnProperty("price");
+}
+
+function hasRightType(product) {
+    return typeof product.barcode == 'string'
+        && typeof product.name == "string"
+        && typeof product.unit == "string"
+        && typeof product.price == "number";
+}
+
 module.exports = {
     saveProduct: saveProduct,
     deleteProduct: deleteProduct,
     readProducts: readProducts,
-    findProductById: findProductById
+    findProductById: findProductById,
+    updateProduct: updateProduct,
+    isValid: isValid
 }
