@@ -32,4 +32,19 @@ function writeProducts(products, callback) {
     });
 }
 
+function deleteProduct(id, callback) {
+    readProducts(function(successfully, products) {
+        var i = 0;
+        for (i; i < products.length; i++) {
+            if (products[i].id === parseInt(id)) {
+                products.splice(i, 1);
+                writeProducts(products, callback);
+                return;
+            }
+        }
+        callback(false);
+    });
+}
+
 module.exports.addProduct = addProduct;
+module.exports.deleteProduct = deleteProduct;
