@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var products = require('./products.js');
+var productUtils = require('./product-utils.js');
 var maxIdUtils = require('./max-id-utils.js');
 const components = [
     'getOneProduct',
@@ -11,6 +11,7 @@ const components = [
 ];
 
 maxIdUtils.initMaxIdFile();
+productUtils.initProductsFile();
 
 components.forEach(function (component) {
     app.use('/products', require('./' + component + '.js'));

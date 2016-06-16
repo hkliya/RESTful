@@ -102,11 +102,32 @@ function hasRightType(product) {
         && typeof product.price == "number";
 }
 
+function initProductsFile() {
+    fs.stat(productFile, function (err, stat) {
+        if (stat && stat.isFile()) {
+            return;
+        } else {
+            openFile();
+        }
+    });
+}
+
+function openFile() {
+    fs.open(productFile, 'a+', function (err, fd) {
+        fs.write(fd, "[]", 0, 'utf-8', function (err) {
+            if (err) {
+                console.error(err.stack);
+            }
+        });
+    });
+}
+
 module.exports = {
     saveProduct: saveProduct,
     deleteProduct: deleteProduct,
     readProducts: readProducts,
     findProductById: findProductById,
     updateProduct: updateProduct,
-    isValid: isValid
+    isValid: isValid,
+    initProductsFile: initProductsFile
 }
