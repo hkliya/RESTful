@@ -34,7 +34,7 @@ function writeId() {
 }
 
 function readMaxId(callback) {
-    fs.readFile('./max-id.json', 'utf-8', function (err, fileContent) {
+    fs.readFile(maxIdFile, 'utf-8', function (err, fileContent) {
         if (err) {
             callback(false);
             return;
@@ -46,7 +46,7 @@ function readMaxId(callback) {
 }
 
 function writeMaxId(id, callback) {
-    fs.writeFile('./max-id.json', JSON.stringify({"maxId": id}), function (err) {
+    fs.writeFile(maxIdFile, JSON.stringify({"maxId": id}), function (err) {
         if (err) {
             callback(false);
             return;
