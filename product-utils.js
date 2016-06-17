@@ -108,12 +108,12 @@ function initProductsFile() {
             console.log("Product file already exists.")
             return;
         } else {
-            openFile();
+            createAndWriteEmptyArray();
         }
     });
 }
 
-function openFile() {
+function createAndWriteEmptyArray() {
     fs.open(productFile, 'a+', function (err, file) {
         console.log(file);
         if (err) {
