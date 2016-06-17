@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var productUtils = require('./product-utils.js');
+var productUtils = require('./../utils/product-utils.js');
 
 router.get('/:id', function (req, res) {
     productUtils.findProductById(parseInt(req.params.id), function (product) {

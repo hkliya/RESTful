@@ -1,5 +1,5 @@
 var fs = require('fs');
-var maxIdFile = './max-id.json';
+var maxIdFile = './data/max-id.json';
 
 function initMaxIdFile() {
     fs.stat(maxIdFile, function (err, stat) {

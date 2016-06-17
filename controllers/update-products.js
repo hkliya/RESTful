@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var productUtils = require('./product-utils.js');
+var productUtils = require('./../utils/product-utils.js');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.put('/:id', function (req, res) {
     var product = req.body;
     if (productUtils.isValid(product)) {
-        const id = parseInt(req.params.id);
+        var id = parseInt(req.params.id);
         productUtils.findProductById(id, function (oldProduct) {
             if (oldProduct) {
                 product.id = id;

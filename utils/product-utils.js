@@ -1,6 +1,6 @@
 var fs = require('fs');
 var maxIdUtils = require('./max-id-utils.js');
-const productFile = './products.json';
+var productFile = './data/products.json';
 
 
 function addProduct(product, callback) {
@@ -104,7 +104,7 @@ function hasRightType(product) {
 
 function initProductsFile() {
     fs.stat(productFile, function (err, stat) {
-        const isExist = stat && stat.isFile();
+        var isExist = stat && stat.isFile();
         if (isExist) {
             console.log("Product file already exists.");
             return;
