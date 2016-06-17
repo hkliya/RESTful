@@ -106,7 +106,7 @@ function initProductsFile() {
     fs.stat(productFile, function (err, stat) {
         const isExist = stat && stat.isFile();
         if (isExist) {
-            console.log("Product file already exists.")
+            console.log("Product file already exists.");
             return;
         } else {
             createAndWriteEmptyArray();
