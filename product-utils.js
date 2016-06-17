@@ -105,6 +105,7 @@ function hasRightType(product) {
 function initProductsFile() {
     fs.stat(productFile, function (err, stat) {
         if (stat && stat.isFile()) {
+            console.log("Product file already exists.")
             return;
         } else {
             openFile();
@@ -113,12 +114,20 @@ function initProductsFile() {
 }
 
 function openFile() {
-    fs.open(productFile, 'a+', function (err, fd) {
-        fs.write(fd, "[]", 0, 'utf-8', function (err) {
-            if (err) {
-                console.error(err.stack);
-            }
-        });
+    fs.open(productFile, 'a+', function (err, file) {
+        console.log(file);
+        if (err) {
+            console.log("Product file can not been created:");
+            console.error(err.stack);
+        } else {
+            writeProducts([], function (successfully) {
+                if (successfully) {
+                    console.log("Product file initialized.");
+                } else {
+                    console.log("Product file initialize failed.");
+                }
+            })
+        }
     });
 }
 
