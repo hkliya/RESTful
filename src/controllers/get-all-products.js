@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var productUtils = require('./../utils/product-utils.js');
+var productUtils = require('../utils/product-utils.js');
 
 router.get('/', function (req, res) {
     productUtils.readProducts(function (successfully, products) {
