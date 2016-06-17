@@ -104,7 +104,8 @@ function hasRightType(product) {
 
 function initProductsFile() {
     fs.stat(productFile, function (err, stat) {
-        if (stat && stat.isFile()) {
+        const isExist = stat && stat.isFile();
+        if (isExist) {
             console.log("Product file already exists.")
             return;
         } else {
